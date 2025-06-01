@@ -12,16 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
 public class CrudApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CrudApplication.class, args);
-    }
-
-
-    @GetMapping(path = "/")
-    public List<Task> sirveNumero() {
-        return List.of(new Task(452145l, "practicar algoritmos", LocalDate.of(2025, Month.MAY, 31)));
     }
 }
