@@ -1,8 +1,15 @@
 package com.listatareas.crud.task;
 
+
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nameOftask;
     private LocalDate fecha;
