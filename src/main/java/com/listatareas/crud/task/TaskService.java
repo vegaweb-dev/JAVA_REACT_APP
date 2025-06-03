@@ -13,11 +13,11 @@ import java.util.List;
 public class TaskService {
 
     private final TaskRepository taskRepository;
-    @Autowired
-    public TaskService(TaskRepository taskRepository){
-        this.taskRepository=taskRepository;
-    }
 
+    @Autowired
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
 
     @GetMapping()
@@ -27,6 +27,6 @@ public class TaskService {
     de la base de daros por tanto este codigo de abajo ya no seria necesario
         return  List.of(new Task(452145l, "practicar algoritmos", LocalDate.of(2025, Month.MAY, 31)));
         */
-     return this.taskRepository.findAll();
+        return this.taskRepository.findAll();
     }
 }
