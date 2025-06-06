@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -28,5 +29,13 @@ public class TaskService {
         return  List.of(new Task(452145l, "practicar algoritmos", LocalDate.of(2025, Month.MAY, 31)));
         */
         return this.taskRepository.findAll();
+    }
+
+    public void newTask(Task task) {
+        Optional<Task> res = taskRepository.findTaskBynameOftask(task.getNameOftask());
+        if (res.isPresent()) {
+            throw new IllegalStateException("esta tarea ya existe");
+        }
+        taskRepository.save(task);
     }
 }

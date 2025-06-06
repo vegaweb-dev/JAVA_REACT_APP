@@ -1,9 +1,7 @@
 package com.listatareas.crud.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -22,6 +20,11 @@ public class TaskController {
     @GetMapping
     public List<Task> sirveTask() {
         return taskService.sirveTask();
+    }
+
+    @PostMapping
+    public void postearTarea(@RequestBody Task task) {
+        this.taskService.newTask(task);
     }
 
 }

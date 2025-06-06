@@ -11,6 +11,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String nameOftask;
     private LocalDate fecha;
 
