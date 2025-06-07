@@ -1,6 +1,7 @@
 package com.listatareas.crud.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -23,8 +24,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public void postearTarea(@RequestBody Task task) {
-        this.taskService.newTask(task);
+    public /*void*/ ResponseEntity<Object> postearTarea(@RequestBody Task task) {
+        return this.taskService.newTask(task);
     }
 
 }

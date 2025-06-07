@@ -2,11 +2,14 @@ package com.listatareas.crud.task;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +34,26 @@ public class TaskService {
         return this.taskRepository.findAll();
     }
 
-    public void newTask(Task task) {
+    public /*void*/ ResponseEntity<Object> newTask(Task task) {
         Optional<Task> res = taskRepository.findTaskBynameOftask(task.getNameOftask());
+        HashMap<String,Object> mapa = new HashMap<>();
         if (res.isPresent()) {
-            throw new IllegalStateException("esta tarea ya existe");
+            mapa.put("error",true);
+            mapa.put("message","ya existe un producto con ese nombre");
+
+
+            /*throw new IllegalStateException("esta tarea ya existe");*/
+            return new ResponseEntity<>(
+                    mapa,
+                    HttpStatus.CONFLICT
+            );
         }
         taskRepository.save(task);
+        mapa.put("datos",task);
+        mapa.put("message","se ha guardado con exito");
+        return new ResponseEntity<>(
+                task,
+                HttpStatus.CREATED
+        );
     }
 }
